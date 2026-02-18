@@ -1,0 +1,49 @@
+CREATE TABLE utilisateurs(
+    id int PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(20),
+    email VARCHAR(30)
+)ENGINE=INNODB;
+
+
+CREATE TABLE commandes(
+    id int PRIMARY KEY AUTO_INCREMENT,
+    date_commande VARCHAR(10),
+    stutus VARCHAR(15),
+    utilisateur_id int,
+    FOREIGN KEY (utilisateur_id) REFERENCES utilisateurs(id)
+)ENGINE =INNODB;
+
+CREATE TABLE categories(
+    id int PRIMARY KEY AUTO_INCREMENT,
+    libelle VARCHAR(20),
+    description text
+)ENGINE = INNODB;
+
+CREATE TABLE produits(
+   id int PRIMARY KEY AUTO_INCREMENT,
+   nom VARCHAR(20),
+   prix DECIMAL(10,2),
+   categorie_id int,
+   FOREIGN KEY (categorie_id) REFERENCES categories(id)
+)ENGINE = INNODB;
+
+
+CREATE TABLE lignes_commande(
+    id int PRIMARY KEY AUTO_INCREMENT,
+    quantite int,
+    prix_unitaire DECIMAL(10,2),
+    commande_id int,
+    produit_id int,
+    FOREIGN KEY (commande_id) REFERENCES commandes(id),
+    FOREIGN KEY (produit_id) REFERENCES produits(id)
+)ENGINE =INNODB;
+
+
+
+1-SELECT commandes.id ,utilisateurs.name FROM utilisateurs
+JOIN commandes ON commandes.utilisateur_id = utilisateurs.id
+
+2-SELECT utilisateurs.* FROM utilisateurs 
+LEFT JOIN commandes ON commandes.utilisateur_id =utilisateurs.id WHERE commandes.id IS NULL;
+
+3- SELECT produits.nom ,produits.prix, categories.libelle FROM categories INNER JOIN produits ON produits.categorie_id = produits.id;
