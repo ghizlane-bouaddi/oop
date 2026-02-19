@@ -3,12 +3,11 @@
 abstract class Animal{
 
     protected string $name;
-    protected int $age;
+   
 
-    public function __construct($name,$age)
+    public function __construct($name)
     {
         $this->name =$name;
-        $this->age =$age;
     }
 
     abstract public function parler();

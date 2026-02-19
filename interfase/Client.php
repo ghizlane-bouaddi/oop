@@ -1,7 +1,7 @@
 <?php
 
 
-require_once "Abstract\interfase\Payable.php";
+require_once "interfase\Payable.php";
 class Client implements Payable{
     protected int $id;
     protected string $nom;
