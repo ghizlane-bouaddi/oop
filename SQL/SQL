@@ -47,3 +47,6 @@ JOIN commandes ON commandes.utilisateur_id = utilisateurs.id
 LEFT JOIN commandes ON commandes.utilisateur_id =utilisateurs.id WHERE commandes.id IS NULL;
 
 3- SELECT produits.nom ,produits.prix, categories.libelle FROM categories INNER JOIN produits ON produits.categorie_id = produits.id;
+4-SELECT commandes.id, utilisateurs.name,SUM(lignes_commande.quantite * prix_unitaire) FROM commandes JOIN utilisateurs ON commandes.utilisateur_id = utilisateurs.id JOIN lignes_commande ON lignes_commande.commande_id =commandes.id GROUP BY commandes.id,utilisateurs.name ORDER BY lignes_commande.prix_unitaire DESC;
+5-SELECT utilisateurs.name,SUM(lignes_commande.quantite * prix_unitaire) AS total FROM utilisateurs JOIN commandes ON commandes.utilisateur_id = utilisateurs.id JOIN lignes_commande ON lignes_commande.quantite = commandes.id GROUP BY utilisateurs.id,utilisateurs.name HAVING total >150;
+6-
