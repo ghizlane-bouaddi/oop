@@ -50,3 +50,83 @@ LEFT JOIN commandes ON commandes.utilisateur_id =utilisateurs.id WHERE commandes
 4-SELECT commandes.id, utilisateurs.name,SUM(lignes_commande.quantite * prix_unitaire) FROM commandes JOIN utilisateurs ON commandes.utilisateur_id = utilisateurs.id JOIN lignes_commande ON lignes_commande.commande_id =commandes.id GROUP BY commandes.id,utilisateurs.name ORDER BY lignes_commande.prix_unitaire DESC;
 5-SELECT utilisateurs.name,SUM(lignes_commande.quantite * prix_unitaire) AS total FROM utilisateurs JOIN commandes ON commandes.utilisateur_id = utilisateurs.id JOIN lignes_commande ON lignes_commande.quantite = commandes.id GROUP BY utilisateurs.id,utilisateurs.name HAVING total >150;
 6-
+
+
+1-SELECT name FROM utilisateurs ORDER BY name DESC;
+2-SELECT email FROM utilisateurs ORDER BY email ASC;
+3-SELECT COUNT(*) FROM utilisateurs;
+4-SELECT COUNT(*) FROM utilisateurs;
+5-SELECT name FROM utilisateurs WHERE LENGTH(name)>5;  //LENGTH :3dad lhrof
+6-SELECT * FROM commandes ORDER BY date_commande DESC;
+7-SELECT COUNT(*) FROM commandes;
+8-SELECT * FROM commandes WHERE stutus ='mane';
+9-SELECT COUNT(*) FROM commandes GROUP BY date_commande
+10-SELECT * FROM commandes WHERE date_commande>2;
+11-SELECT * FROM produits ORDER BY prix DESC;
+12-SELECT * FROM produits ORDER BY prix DESC LIMIT 3;
+13-SELECT AVG(prix) FROM produits;
+14-SELECT COUNT(*) FROM produits GROUP BY categorie_id;
+15-SELECT COUNT(categorie_id) FROM produits;
+16-SELECT SUM(quantite) FROM lignes_commande;
+17-SELECT SUM(prix_unitaire) FROM lignes_commande;
+18-SELECT produit_id FROM lignes_commande ORDER BY produit_id DESC LIMIT 1;
+19-SELECT * FROM lignes_commande WHERE produit_id >2;
+20-SELECT * FROM lignes_commande ORDER BY quantite DESC;
+---2 table
+21-SELECT commandes.*,utilisateurs.name FROM utilisateurs 
+JOIN commandes ON commandes.utilisateur_id = commandes.id
+22-SELECT utilisateurs.*,commandes.id FROM utilisateurs 
+JOIN commandes ON commandes.utilisateur_id = utilisateurs.id;
+23-SELECT utilisateurs.*,commandes.id FROM utilisateurs 
+LEFT JOIN commandes ON commandes.utilisateur_id = utilisateurs.id;
+24-SELECT COUNT(commandes.id), utilisateurs.name FROM utilisateurs 
+JOIN commandes ON commandes.utilisateur_id = utilisateurs.id 
+GROUP BY utilisateur_id;
+25-SELECT utilisateurs.name ,commandes.id FROM utilisateurs 
+LEFT JOIN commandes ON commandes.utilisateur_id = utilisateurs.id 
+WHERE commandes.utilisateur_id IS NULL;
+26-SELECT commandes.id ,lignes_commande.quantite FROM commandes 
+JOIN lignes_commande ON lignes_commande.commande_id = lignes_commande.id;
+27-SELECT COUNT(produits.id) ,lignes_commande.produit_id FROM produits 
+JOIN lignes_commande ON lignes_commande.produit_id = lignes_commande.id 
+GROUP BY lignes_commande.produit_id;
+28-SELECT lignes_commande.produit_id ,produits.nom FROM produits
+JOIN lignes_commande ON lignes_commande.produit_id = produits.id
+WHERE lignes_commande.produit_id >1;
+29-SELECT commandes.id ,lignes_commande.quantite FROM commandes 
+JOIN lignes_commande ON lignes_commande.commande_id = commandes.id 
+WHERE lignes_commande.quantite >5;
+30-SELECT commandes.id ,lignes_commande.quantite FROM commandes 
+JOIN lignes_commande ON lignes_commande.commande_id =commandes.id 
+ORDER BY lignes_commande.quantite
+31-SELECT produits.nom , categories.id FROM categories 
+JOIN produits ON produits.categorie_id = categories.id;
+32-SELECT COUNT(produits.id) ,categories.id FROM categories 
+JOIN produits ON produits.categorie_id = categories.id 
+GROUP BY produits.categorie_id;
+33-SELECT produits.categorie_id ,categories.id FROM categories 
+LEFT JOIN produits ON produits.categorie_id = categories.id 
+WHERE produits.categorie_id IS null;
+34-SELECT produits.prix ,categories.id FROM categories
+LEFT JOIN produits ON produits.categorie_id = produits.id
+ORDER BY produits.prix ASC LIMIT 1
+35-SELECT produits.prix ,categories.id FROM categories
+JOIN produits ON produits.categorie_id = produits.id
+ORDER BY prix 
+36-SELECT produits.nom ,lignes_commande.produit_id FROM produits 
+JOIN lignes_commande ON lignes_commande.produit_id = produits.id;
+37-SELECT produits.nom ,lignes_commande.produit_id FROM produits 
+JOIN lignes_commande ON lignes_commande.produit_id = produits.id 
+WHERE lignes_commande.produit_id IS null;
+38-SELECT produits.nom ,COUNT(lignes_commande.produit_id) FROM produits
+JOIN lignes_commande ON lignes_commande.produit_id =produits.id
+39-SELECT produits.nom , lignes_commande.produit_id FROM produits 
+JOIN lignes_commande ON lignes_commande.produit_id = produits.id 
+ORDER BY lignes_commande.produit_id ASC LIMIT 1;
+40-SELECT produits.nom , lignes_commande.produit_id FROM produits 
+JOIN lignes_commande ON lignes_commande.produit_id = produits.id 
+ORDER BY lignes_commande.produit_id;
+
+----3 table
+
+41-
